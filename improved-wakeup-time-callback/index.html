@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Improved Wake Up Time — OAuth Callback</title>
+  <style>
+    body { font-family: -apple-system, system-ui, sans-serif; max-width: 32rem; margin: 4rem auto; padding: 1rem; color: #222; line-height: 1.5; }
+    code { background: #f3f3f3; padding: 0.1rem 0.3rem; border-radius: 0.2rem; }
+    .muted { color: #666; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Connecting Improved Wake Up Time…</h1>
+  <p>This page bridges Oura's OAuth callback back into the app via a custom URL scheme.</p>
+  <p id="status">Redirecting to the app…</p>
+  <p class="muted">If nothing happens automatically, you can close this window.</p>
+
+  <script>
+    (function () {
+      var query = window.location.search || '';
+      var target = 'improvedwakeup://oauth-callback' + query;
+      try {
+        window.location.replace(target);
+      } catch (e) {
+        document.getElementById('status').textContent =
+          'Could not auto-redirect. Open the app and try again.';
+      }
+    })();
+  </script>
+</body>
+</html>
